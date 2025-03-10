@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝐀𝐤𝐢𝐧𝐨 ﾈ 𝐁𝐞𝐫𝐬𝐞⃛𝐫𝐤﹝𖣂﹞</title>
+<link rel="icon" type="image/png" href="logo_akino2.png">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden; /* Prevent scrolling of the entire page */
+        }
+        /* Full-page background with dark overlay and animated movement */
+        .background-overlay {
+            position: fixed; /* Cover the entire page */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://conceptartworld.com/wp-content/uploads/2013/07/Nick_Keller_Concept_Art_Illustration_06.jpg');
+            background-size: 110%; /* Slight zoom for the image */
+            background-position: 0% 50%; /* Start at the left, center vertically */
+            background-repeat: no-repeat;
+            filter: brightness(50%); /* Reduce brightness by 50% */
+            z-index: -2; /* Behind all content */
+            animation: moveBackground 15s infinite alternate ease-in-out; /* Animation for smooth movement */
+        }
+        /* Small black box with 80% transparency */
+        .black-box {
+            position: fixed; /* Positioned relative to the viewport */
+            top: 20%; /* Adjust the top position */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust to center */
+            width: 80%; /* Width of the box */
+            height: 60%; /* Height of the box */
+            background-color: rgba(0, 0, 0, 0.8); /* Black with 80% transparency */
+            z-index: -1; /* Behind the background image */
+            border-radius: 10px; /* Rounded corners */
+            padding: 20px; /* Padding inside the box */
+            overflow-y: auto; /* Allow vertical scrolling if necessary */
+        }
+        @keyframes moveBackground {
+            0% {
+                background-position: 0% 50%; /* Start from the left */
+            }
+            100% {
+                background-position: 100% 50%; /* Move to the right */
+            }
+        }
+        /* Style for the loading animation */
+        .loading {
+            margin: 20px;
+            font-size: 18px;
+            color: #8B4513; /* Text color changed to #8B4513 */
+            display: none; /* Hidden initially */
+        }
+        /* Container for messages */
+        #messages {
+            max-height: 100%; /* Limit height of messages */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center messages */
+            justify-content: flex-start; /* Start messages from the top */
+            padding: 20px; /* Padding around messages */
+            margin: 0; /* Remove margin */
+            scrollbar-width: thin; /* For Firefox */
+            scrollbar-color: #8B4513 transparent; /* Scrollbar color for Firefox */
+        }
+        /* Style for the message text */
+        .message {
+            color: #8B4513; /* Text color changed to #8B4513 */
+            font-size: 16px; /* Small size */
+            text-align: center; /* Center the text */
+            margin: 5px; /* Space between messages */
+            opacity: 0; /* Start hidden */
+            transition: opacity 1s; /* Fade in transition */
+        }
+        /* Custom scrollbar for Webkit browsers */
+        #messages::-webkit-scrollbar {
+            width: 12px; /* Width of the scrollbar */
+        }
+        #messages::-webkit-scrollbar-track {
+            background: transparent; /* Background of the scrollbar track */
+        }
+        #messages::-webkit-scrollbar-thumb {
+            background-color: #8B4513; /* Color of the scrollbar thumb */
+            border-radius: 10px; /* Rounded corners for scrollbar */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Darkened background overlay with movement -->
+    <div class="background-overlay"></div>
+    <!-- Small black box with 80% transparency -->
+    <div class="black-box">
+        <!-- Loading animation -->
+        <div class="loading">Reporting... <span class="dots">.</span></div>
+
+        <!-- Container for messages -->
+        <div id="messages"></div>
+    </div>
+
+    <script>
+        const messagesContainer = document.getElementById('messages');
+        const loadingText = document.querySelector('.loading');
+        const dots = document.querySelector('.dots');
+        
+        // Function to create fake email messages
+        function createMessages() {
+            for (let i = 1; i <= 100; i++) {
+                const message = document.createElement('div');
+                message.className = 'message';
+                message.innerText = `${i}) Reported sucessfully by using virtual numbers.`;
+                messagesContainer.appendChild(message);
+            }
+        }
+
+        // Function to simulate sending mail with loading animation
+        function sendMail() {
+            loadingText.style.display = 'block'; // Show loading text
+            let count = 0;
+
+            const loadingInterval = setInterval(() => {
+                dots.innerText += '.'; // Add dots for loading effect
+                if (dots.innerText.length > 3) {
+                    dots.innerText = ''; // Reset dots
+                }
+            }, 500);
+
+            const messageInterval = setInterval(() => {
+                if (count < 100) {
+                    const messageElements = document.querySelectorAll('.message');
+                    messageElements[count].style.opacity = '1'; // Fade in message
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the bottom
+                    count++;
+                } else {
+                    clearInterval(messageInterval); // Stop the message interval
+                    clearInterval(loadingInterval); // Stop loading animation
+                    loadingText.style.display = 'none'; // Hide loading text
+                }
+            }, 1000); // Display each message every second
+        }
+
+        // Initialize the messages and start the fake sending process
+        createMessages();
+        sendMail();
+    </script>
+
+</body>
+</html>

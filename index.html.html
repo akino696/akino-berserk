@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝐀𝐤𝐢𝐧𝐨 ﾈ 𝐁𝐞𝐫𝐬𝐞⃛𝐫𝐤﹝𖣂﹞</title>
+    <link rel="icon" type="image/png" href="logo_akino2.png">
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        /* Full-page background with dark overlay and animated movement */
+        .background-overlay {
+            position: fixed; /* Cover the entire page */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://conceptartworld.com/wp-content/uploads/2013/07/Nick_Keller_Concept_Art_Illustration_06.jpg');
+            background-size: 110%; /* Slight zoom for the image */
+            background-position: 0% 50%; /* Start at the left, center vertically */
+            background-repeat: no-repeat;
+            filter: brightness(50%); /* Reduce brightness by 50% */
+            z-index: -1; /* Behind all content */
+            animation: moveBackground 15s infinite alternate ease-in-out; /* Animation for smooth movement */
+        }
+        @keyframes moveBackground {
+            0% {
+                background-position: 0% 50%; /* Start from the left */
+            }
+            100% {
+                background-position: 100% 50%; /* Move to the right */
+            }
+        }
+        .title {
+            font-size: 32px;
+            color: white; /* Changed to white */
+            margin-bottom: 20px;
+            animation: fadeAndSwitch 6s infinite;
+        }
+        @keyframes fadeAndSwitch {
+            0% { opacity: 0; }
+            16% { opacity: 1; }
+            33% { opacity: 0; }
+            50% { opacity: 1; }
+            66% { opacity: 0; }
+            83% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        .transparent-box {
+            width: 400px;
+            height: 300px;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        input[type="number"], select {
+            width: 200px;
+            height: 40px;
+            background-color: black;
+            color: white;
+            border: 2px solid white;
+            text-align: center;
+            font-size: 14px;
+            border-radius: 5px;
+            margin-top: 10px;
+            -moz-appearance: textfield;
+        }
+        input[type="number"]::-webkit-inner-spin-button, 
+        input[type="number"]::-webkit-outer-spin-button { 
+            -webkit-appearance: none;
+            margin: 0; 
+        }
+        select {
+            cursor: pointer;
+        }
+        .button {
+            width: 200px;
+            height: 40px;
+            background-color: #8B4513; /* Brown color */
+            color: black;
+            text-align: center;
+            text-decoration: none; /* No underline */
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Darkened background overlay with movement -->
+    <div class="background-overlay"></div>
+
+    <div class="title"></div> <!-- Title with fade and text switch -->
+
+    <div class="transparent-box">
+        <select id="country-code">
+            <option value="+91">India +91</option>
+            <option value="+92">Pakistan +92</option>
+            <option value="+49">Germany +49</option>
+            <option value="+43">Austria +43</option>
+            <option value="+55">Brazil +55</option>
+            <option value="+62">Indonesia +62</option>
+        </select>
+        <input type="number" id="number-input" placeholder="𝐀𝐤𝐢𝐧𝐨 ﾈ 𝐁𝐞𝐫𝐬𝐞⃛𝐫𝐤﹝𖣂﹞" />
+        <a href="Akino V1 data.html" class="button" id="submit-button">﹝𖣂﹞</a> <!-- Updated button as anchor link -->
+        <div class="error-message" id="error-message">Please enter a number!</div>
+    </div>
+
+    <script>
+        // Script to dynamically change the content of the title during the animation
+        const titleElement = document.querySelector('.title');
+        const texts = [
+            "Akino Berserk, BAN - V1",
+            "Reporting through 100+ Numbers !!!",
+            "Instant Perma :)",
+            "t.me/LegionBerserk"
+        ];
+
+        let currentIndex = 0;
+
+        setInterval(() => {
+            titleElement.textContent = texts[currentIndex];
+            currentIndex = (currentIndex + 1) % texts.length;
+        }, 2000);
+
+        // Optional: Hide error message when user types in the input
+        const numberInput = document.getElementById('number-input');
+        const errorMessage = document.getElementById('error-message');
+        const submitButton = document.getElementById('submit-button');
+
+        numberInput.addEventListener('input', () => {
+            errorMessage.style.display = 'none';
+        });
+
+        // Prevent navigation if the number input is empty
+        submitButton.addEventListener('click', (event) => {
+            if (!numberInput.value.trim()) {
+                event.preventDefault(); // Stop the link from navigating
+                errorMessage.style.display = 'block'; // Show error message
+            }
+        });
+    </script>
+
+</body>
+</html>
